@@ -20,4 +20,4 @@ Raspberry Pi Pico is a low-cost, high-performance microcontroller board with fle
 ## Pinout and design files
 ![Alt text](image.png)
 
-For reference use (this pdf)[Robot-car.-\Pico-R3-A4-Pinout.pdf].  
+For reference use (this pdf)[\Pico-R3-A4-Pinout.pdf].  
