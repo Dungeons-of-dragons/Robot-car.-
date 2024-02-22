@@ -35,3 +35,6 @@ and so on. The f prefix means this is a feature you are implementing.
 **Never create a PR to `main` directly. Even the branch protection rules wont let you, just dont.**
 
 PR's that are being merged to main must have been reviewed by at least one person and must always come from `develop` branch. For more understanding about this contribution workflow you may refer to [this article](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow). The main reason we are implementing these strict workflows is so that the `main` branch can never have breaking changes or it should always have the latest working version of the firmware.
+
+## Setup 
+Follow the instructions on the book getting started with the RP2040 to complete the setup regardless of your OS. Although it is recommended to do development on Linux ultimately, you have sovereign choice.  
