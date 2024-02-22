@@ -6,9 +6,9 @@ name: CMake Build Matrix
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "main", "develop" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "main","develop" ]
 
 env:
   CMAKE_VERSION: 3.23.0
