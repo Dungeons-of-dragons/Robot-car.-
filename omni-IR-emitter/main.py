@@ -1,12 +1,9 @@
 from machine import Pin,PWM
 import utime
 
-
 MID = 1500000
 MIN = 1000000
 MAX = 2000000
-
-
 pwm = PWM(Pin(26))
 
 pwm.freq(50)
