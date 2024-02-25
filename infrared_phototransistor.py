@@ -2,7 +2,6 @@ import machine
 import utime
 
 adc_pin = 26
-
 adc = machine.ADC(0)
 threshold = 1000  
 
