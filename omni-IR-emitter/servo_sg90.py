@@ -40,5 +40,7 @@ class Servo:
         self.__motor.freq(self.__servo_pwm_freq)
 
     def read(self):
-        self.current_angle
+        self.current_angle = angle 
         return current_angle
+
+    def read
