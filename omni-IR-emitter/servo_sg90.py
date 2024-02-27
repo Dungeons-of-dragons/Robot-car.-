@@ -38,3 +38,7 @@ class Servo:
         self.__angle_conversion_factor = (self.__max_u16_duty - self.__min_u16_duty) / (self.max_angle - self.min_angle)
         self.__motor = PWM(Pin(pin))
         self.__motor.freq(self.__servo_pwm_freq)
+
+    def read(self):
+        self.current_angle
+        return current_angle
