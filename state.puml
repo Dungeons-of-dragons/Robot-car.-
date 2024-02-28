@@ -8,10 +8,10 @@ Finding_target --> Navigation : target located
 
 
 state Navigation{
-    Reorientation : Get target bearing from MPU2 (once)
-    Reorientation : Get MPU2 readings
-    Reorientation : Move motors accordingly until MPU1 == MPU2
-    Reorientation --> Move : MPU2 == MPU1 bearing
+    Reorientation : Read servo motor angle
+    Reorientation : Calculate angular velocity
+    Reorientation : Move motors until MPU == angular velocity
+    Reorientation --> Move : MPU == angular velocity
 
     Move : Move forward 
     Move : Check for obstacle (ultrasonic sensor)
@@ -21,10 +21,12 @@ state Navigation{
     Obstacle_avoidance : Stop distance x from obstacle
     Obstacle_avoidance : Navigate round obstacle
     Obstacle_avoidance --> Move : Obstacle not detected
+
 }
 
 Navigation --> Destination_arrival : signal not found
 Destination_arrival : Stop
 
 Destination_arrival --> [*]
+
 @enduml
