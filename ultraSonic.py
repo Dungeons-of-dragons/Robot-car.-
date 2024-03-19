@@ -45,6 +45,8 @@ class UltraSonic:
      
         return distance
 
+# echo = 0
+# trigger = 1
 # ultra = UltraSonic(echo, trigger)
 # while True:
 #    print (" Distance: " + str(ultra.distance())+ "   ", end='\r')
