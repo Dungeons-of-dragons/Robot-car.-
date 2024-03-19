@@ -2,6 +2,7 @@
 # pulse width values.
 import machine
 import math
+from infrared_phototransistor import is_signal_detected  # Import the signal detection function
 
 class Servo:
     def __init__(self,pin_id,min_us=544.0,max_us=2400.0,min_deg=0.0,max_deg=180.0,freq=50):
@@ -32,4 +33,23 @@ class Servo:
 
     def off(self):
         self.pwm.duty_ns(0)
-        
+
+    def reset_default(self):
+        self.write(90)
+
+    def servo_turn_right(self):
+        self.reset_default()
+        self.write(0)
+
+    def servo_turn_left(self):
+        self.reset_default()
+        self.write(180)
+
+    def scan_until_signal_detected(self, scan_times=5):
+        for scan_count in range(scan_times):  
+            for angle in range(0, 181):  
+                self.write(angle) 
+                if is_signal_detected(): 
+                    return angle  
+                machine.sleep(100)  
+        return None  
