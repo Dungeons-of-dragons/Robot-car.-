@@ -13,3 +13,5 @@ class MedianFilter():
     def get_median(self):
         return sorted(self.window)[len(self.window) // 2]
 
+
+# this median filter is undrestandably more computationally intensive and should be used with caution.

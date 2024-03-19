@@ -1,11 +1,14 @@
 from machine import Pin
 import utime
+from maf import MovingAverageFilter
+
+maf = MovingAverageFilter(5)
 
 class UltraSonic:
     def __init__(self, echo, trig):
         self.echo = echo
         self.trig = trig
-    def distance (self):        
+    def raw_distance (self):        
         new_reading = False
         counter = 0
         distance = 0
@@ -44,6 +47,13 @@ class UltraSonic:
             distance = round(distance, 1)
      
         return distance
+
+    def distance(self):
+        """ this function returns the distance in centimeters """
+        return maf.add(self.raw_distance())
+
+
+
 
 # echo = 0
 # trigger = 1
