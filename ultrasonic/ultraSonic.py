@@ -1,14 +1,14 @@
-from machine import Pin
+]from machine import Pin
 import utime
-from maf import MovingAverageFilter
-
-maf = MovingAverageFilter(5)
+from maf import MovingAverageFilter 
 
 class UltraSonic:
     def __init__(self, echo, trig):
         self.echo = echo
         self.trig = trig
-    def raw_distance (self):        
+        self.maf = MovingAverageFilter(5) 
+
+    def raw_distance(self):        
         new_reading = False
         counter = 0
         distance = 0
@@ -25,7 +25,6 @@ class UltraSonic:
         utime.sleep_us(2)
         
         while not echoPIN.value():
-            # pass
             counter += 1
             if counter == 5000:
                 new_reading = True
@@ -34,30 +33,24 @@ class UltraSonic:
         if new_reading:
             return False
         
-        startT = utime.ticks_us()/1000000
-        while echoPIN.value(): pass
-        feedbackT = utime.ticks_us()/1000000
+        startT = utime.ticks_us() / 1000000
+        while echoPIN.value(): 
+            pass
+        feedbackT = utime.ticks_us() / 1000000
      
         if feedbackT == startT:
             distance = "N/A"
         else:
             duration = feedbackT - startT
-            soundSpeed = 34300 # cm/s
+            soundSpeed = 34300  # cm/s
             distance = duration * soundSpeed / 2
             distance = round(distance, 1)
      
         return distance
 
     def distance(self):
-        """ this function returns the distance in centimeters """
-        return maf.add(self.raw_distance())
+        """Return the distance in centimeters with moving average filtering"""
+        raw_distance = self.raw_distance()
+        self.maf.add(raw_distance) 
+        return self.maf.get_average() 
 
-
-
-
-# echo = 0
-# trigger = 1
-# ultra = UltraSonic(echo, trigger)
-# while True:
-#    print (" Distance: " + str(ultra.distance())+ "   ", end='\r')
-#    utime.sleep(0.5)
