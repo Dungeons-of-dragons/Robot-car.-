@@ -1,6 +1,6 @@
-# this file implements a moving average filter for any raw sensor values. 
+# this file implements a median filter for any raw sensor values. 
 
-class MovingAverageFilter:
+class MedianFilter():
     def __init__(self, window_size):
         self.window_size = window_size
         self.window = []
@@ -10,6 +10,6 @@ class MovingAverageFilter:
         if len(self.window) > self.window_size:
             self.window.pop(0)
     
-    def get_average(self):
-        return sum(self.window) / len(self.window)
+    def get_median(self):
+        return sorted(self.window)[len(self.window) // 2]
 
