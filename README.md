@@ -38,3 +38,21 @@ PR's that are being merged to main must have been reviewed by at least one perso
 
 ## Setup 
 Follow the instructions on the book getting started with the RP2040 to complete the setup regardless of your OS. Although it is recommended to do development on Linux ultimately, you have sovereign choice.  
+
+## testing intergrations 
+There is a branch `testingintergrations` all changes regarding filters and intergrating the code togther happen from it. 
+
+The folder structure uses the sensor name as the base folder. 
+although ideally when testing on the pico, all the files are placed in the root directory 
+
+So far the following intergrations have been achieved:
+
+
+- [x] moving motors backward, right, left, forward, stop
+- [x] obstacle detection, stopping motors, moving backward
+- [x] mounting ultrasonic on servo motor
+- [ ] implementing path finding using servo and ultrasonic
+- [ ] implement servo scanning with IR sensor
+- [x] implement median filters and moving average filters for analog sensor data
+- [ ] intergrating mpu with robot chasis 
+- [ ] implemeting turn to specified angle on motors(needs chasis)
