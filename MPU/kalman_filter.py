@@ -1,7 +1,15 @@
+from machine import Pin, I2C
 from imu import MPU6050
 
 class KalmanFilter:
     def __init__(self):
+        # Initialize I2C
+        # Raspberry Pi Pico - I2C0, Pins GPIO0 and GPIO1
+        i2c = I2C(0, scl=Pin(1), sda=Pin(0), freq=400000)  # Adjust pins & frequency as needed
+        
+        # Initialize MPU6050 with the I2C object
+        self.mpu = MPU6050(i2c)
+        
         # Kalman filter parameters
         self.Q = [[0.001, 0], [0, 0.003]]  # Process noise covariance
         #@todo tune all this freaking values. 
@@ -16,8 +24,6 @@ class KalmanFilter:
         self.B = [[0], [0]]
         # Measurement matrix
         self.H = [[1, 0]]
-
-        self.mpu = MPU6050('X')  # Initialize MPU6050
 
     def dot(self, M, N):
         return [[sum(a*b for a,b in zip(M_row,N_col)) for N_col in zip(*N)] for M_row in M]
@@ -57,6 +63,5 @@ class KalmanFilter:
         self.update([[yaw_rate]])
         # Return the estimated yaw
         return self.state_estimate[0][0]
-
 
         

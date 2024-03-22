@@ -1,14 +1,17 @@
-from time import sleep
-from machine import Pin, I2C
-from imu import MPU6050
+from MotorDriver import my_sleep
+from kalman_filter import KalmanFilter
+from maf import MovingAverageFilter
 
-i2c = I2C(0, sda=Pin(0), scl=Pin(1), freq=400000)
-imu = MPU6050(i2c)
+kf = KalmanFilter()
+maf = MovingAverageFilter(10)
 
 while True:
-    gx=round(imu.gyro.x)
-    gy=round(imu.gyro.y)
-    gz=round(imu.gyro.z)
+    raw_yaw = kf.get_yaw()
+    maf.add(raw_yaw)
+    yaw = maf.get_average()
+    print(yaw)
+    my_sleep(100)
     
-    print("gx",gx,"\t","gy",gy,"\t","gz",gz,"\t","        ",end="\r")
-    sleep(0)
+
+    
+    
