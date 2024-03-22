@@ -3,14 +3,14 @@ from MotorDriver import L298N, Motors, my_sleep
 import utime
 
 LEFT_ENA = 0
-LEFT_IN1 = 1
-LEFT_IN2 = 2
+LEFT_IN1 = 2
+LEFT_IN2 = 1
 RIGHT_ENA = 3
-RIGHT_IN1 = 4
-RIGHT_IN2 = 5
+RIGHT_IN1 = 5
+RIGHT_IN2 = 4
 DEFAULT_SPEED = 65534
-echo = 17
-trigger = 16
+echo = 7
+trigger = 8
 ultra = UltraSonic(echo, trigger)
 motors=Motors()
 dist = 10
