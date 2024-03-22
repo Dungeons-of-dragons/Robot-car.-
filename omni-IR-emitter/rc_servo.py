@@ -5,7 +5,7 @@ import math
 from infrared_phototransistor import is_signal_detected 
 
 class Servo:
-    def __init__(self,pin_id,min_us=544.0,max_us=2400.0,min_deg=0.0,max_deg=180.0,freq=50):
+    def __init__(self,pin_id=6,min_us=544.0,max_us=2400.0,min_deg=0.0,max_deg=180.0,freq=50):
         self.pwm = machine.PWM(machine.Pin(pin_id))
         self.pwm.freq(freq)
         self.current_us = 0.0
