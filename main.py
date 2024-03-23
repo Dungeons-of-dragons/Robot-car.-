@@ -1,3 +1,6 @@
+from time import sleep
+from machine import Pin, I2C
+from imu import MPU6050
 from ultraSonic import UltraSonic
 from motorDriver import L298N, Motors, my_sleep
 import utime
@@ -29,8 +32,16 @@ def obstacle_avoidance():
         my_sleep(1000)
         motors.stop()
 
+i2c = I2C(0, sda=Pin(12), scl=Pin(13), freq=400000)
+imu = MPU6050(i2c)
 
 while True:
+    gx=round(imu.gyro.x)
+    gy=round(imu.gyro.y)
+    gz=round(imu.gyro.z)
+    
+    print("gx",gx,"\t","gy",gy,"\t","gz",gz,"\t","        ",end="\r")
+    sleep(1)
     print (" Distance: " + str(ultra.distance())+ "   ", end='\r')
     motors.start()
     my_sleep(500)

@@ -34,3 +34,6 @@ def last_angle():
     last_angle = my_servo.read()
     return last_angle
 
+while True:
+    my_servo.scan_until_signal_detected()
+    time.sleep(0.5)
