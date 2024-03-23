@@ -1,4 +1,4 @@
-]from machine import Pin
+from machine import Pin
 import utime
 from maf import MovingAverageFilter 
 
