@@ -1,17 +1,17 @@
 import machine
 import utime
+from maf import MovingAverageFilter
 
-adc_pin = 26
+maf = MovingAverageFilter(5)
+
+adc_pin = 27
 adc = machine.ADC(0)
-threshold = 1000  
+threshold =  700 
 
 def is_signal_detected():
-    adc_value = adc.read_u16()
+    raw_adc_value = adc.read_u16()
+    maf.add(raw_adc_value)
+    adc_value = maf.get_average()
     return adc_value > threshold
 
-while True:
-    if is_signal_detected():
-        print("Signal detected!")
-    else:
-        print("No signal detected.")
-    utime.sleep_ms(100)
+

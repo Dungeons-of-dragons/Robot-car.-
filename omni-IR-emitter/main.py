@@ -34,7 +34,3 @@ def last_angle():
     last_angle = my_servo.read()
     return last_angle
 
-
-last_angle = last_angle()
-print(f"Servo angle after time seconds: {last_angle} degrees")
-current_angle = last_angle
